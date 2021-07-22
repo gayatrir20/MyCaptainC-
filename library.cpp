@@ -10,7 +10,7 @@ struct book
     float price;
     int quantity;
 };
-book b[10];
+book b[10]; //initializing structure array
 
 int main()
 {
@@ -77,7 +77,7 @@ int main()
                 {
                     cout<<"Name of book "<<b[i].name<<endl;
                     cout<<"Copies available "<<b[i].quantity<<endl;
-                    ptr++;
+                    ptr++; //increasing pointer with each book of given author
                 }
             }
             if(ptr==0)
@@ -87,18 +87,18 @@ int main()
             }
             break;
             case 5:
-            book temp;
+            book temp; //taking temporary structure pointer for comparison
             int j;
             for(i=0;i<num;i++)
             {
-                for(j=i+1;j<num;j++)
+                for(j=i+1;j<num;j++) //taking 2nd pointer for sorted array
                 {
                     if(strcmp(b[i].name,b[j].name)>0)
                     {
                         temp=b[i];
                         b[i]=b[j];
                         b[j]=temp;
-                    };
+                    }; //arranging array alphabetically
                 }
             }
             cout<<"Names of books in alphabetical order are"<<endl;

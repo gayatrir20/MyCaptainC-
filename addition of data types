@@ -1,0 +1,82 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+
+//specifying add functions of different data types
+int add(int x, int y)
+{
+    return x+y;
+}
+short add(short x, short y)
+{
+    return x+y;
+}
+float add(float x, float y)
+{
+    return x+y;
+}
+double add(double x, double y)
+{
+    return x+y;
+}
+long double add(long double x, long double y)
+{
+    return x+y;
+}
+long add(long x,long y)
+{
+    return x+y;
+}
+char add(char x, char y)
+{
+    return x+y;
+}
+int main()
+{
+    //if I make one for loop for all data types I can't take input
+    //I cant number the variables as per array cause the elements of an array cannot have different data types
+    
+    string data[7]={"short", "int", "float", "double", "long double", "long int", "char"}; //array of data types
+    
+    short a,b;
+    cout<<"Enter two "<<data[0]<<" data type numbers"<<endl;
+    cin>>a>>b;
+    short s=add(a,b); //referring the input and calling its function as per its data type
+    cout<<"Sum is "<<s;
+    
+    int a1,b1;
+    cout<<"\nEnter two "<<data[1]<<" data type numbers"<<endl;
+    cin>>a1>>b1;
+    int s1=add(a1,b1);
+    cout<<"Sum is "<<s1;
+    
+    float a2,b2;
+    cout<<"\nEnter two "<<data[2]<<" data type numbers"<<endl;
+    cin>>a2>>b2;
+    float s2=add(a2,b2);
+    cout<<"Sum is "<<s2;
+    
+    double a3,b3;
+    cout<<"\nEnter two "<<data[3]<<" data type numbers"<<endl;
+    cin>>a3>>b3;
+    double s3=add(a3,b3);
+    cout<<"Sum is "<<s3;
+    
+    long double a4,b4;
+    cout<<"\nEnter two "<<data[4]<<" data type numbers"<<endl;
+    cin>>a4>>b4;
+    long double s4=add(a4,b4);
+    cout<<"Sum is "<<s4;
+    
+    long a5,b5;
+    cout<<"\nEnter two "<<data[5]<<" data type numbers"<<endl;
+    cin>>a5>>b5;
+    long s5=add(a5,b5);
+    cout<<"Sum is "<<s5;
+    
+    char a6,b6;
+    cout<<"\nEnter two "<<data[6]<<" data type numbers"<<endl;
+    cin>>a6>>b6;
+    char s6=add(a6,b6);
+    cout<<"Sum is "<<s6;
+ }

@@ -1,0 +1,76 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+//putting formulae in functions
+float cube(float s)
+{
+    return s*s*s;
+}
+float sphere(float r)
+{
+    return (4*3.14*r*r*r)/3;
+}
+float cylinder(float r,float h)
+{
+    return 3.14*r*r*h;
+}
+float cone(float r,float h)
+{
+    return (3.14*h*r*r)/3;
+}
+int main()
+{
+    int ch;
+    float v[4]; //creating array to store volumes of all shapes
+    string shape[4]={"cube","sphere","cylinder","cone"}; //creating array of shapes
+    cout<<"WELCOME"<<endl;
+    while(1)
+    {
+    cout<<"Enter the shape number to find volume\n1.cube\n2.sphere\n3.cylinder\n4.cone\n5.Display all volumes\n6.Exit ";
+    cin>>ch;
+    switch(ch)
+    {
+        case 1:
+        float s;
+        cout<<"Enter side measure of "<<shape[0]<<" ";
+        cin>>s;
+        v[0]=cube(s); //referring the input taken to the function
+        cout<<"Volume of "<<shape[0]<<" is "<<v[0]<<endl;
+        break;
+        case 2:
+        float r;
+        cout<<"Enter radius of "<<shape[1]<<" ";
+        cin>>r;
+        v[1]=sphere(r);
+        cout<<"Volume of "<<shape[1]<<" is "<<v[1]<<endl;
+        break;
+        case 3:
+        float r1,h;
+        cout<<"Enter radius of "<<shape[2]<<" ";
+        cin>>r;
+        cout<<"Enter height of "<<shape[2]<<" ";
+        cin>>h;
+        v[2]=cylinder(r,h); //referring the inputs taken and calling the respective function
+        cout<<"Volume of "<<shape[2]<<" is "<<v[2]<<endl;
+        break;
+        case 4:
+        float r2,h2;
+        cout<<"Enter radius of "<<shape[3]<<" ";
+        cin>>r;
+        cout<<"Enter height of "<<shape[3]<<" ";
+        cin>>h;
+        v[3]=cone(r,h);
+        cout<<"Volume of "<<shape[3]<<" is "<<v[3]<<endl;
+        break;
+        case 5:
+        for(int i=0;i<4;i++)
+        {
+          cout<<"Volume of "<<shape[i]<<" is "<<v[i]<<endl;
+        } //displaying volume array elements one by one 
+        break;
+        case 6:exit(0);
+        default: cout<<"Invalid choice"<<endl;
+    }
+    }
+}

@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+int i,n;
+int marks[100]; //making 100 as maximum limit of students
+
+int max(int arr[])
+{
+  int max;
+  max=marks[0]; //making the first element of array as minimum
+  for(i=1;i<n;i++)
+  {
+      if(marks[i]>max) //comparing 
+      {
+          max=marks[i];
+      }
+  }
+  return max;
+}
+int min(int arr[])
+{
+  int min;
+  min=marks[0]; //making the first element of array as minimum
+  for(i=1;i<n;i++)
+  {
+      if(marks[i]<min) //comparing
+      {
+          min=marks[i];
+      }
+  }
+  return min;
+}
+int main()
+{
+    cout<<"WELCOME"<<endl;
+    cout<<"Enter number of students ";
+    cin>>n;
+    cout<<"Enter marks of students one by one"<<endl;
+    for(i=0;i<n;i++)
+    {
+        cin>>marks[i]; //taking in each element of array
+    }
+    cout<<"The maximum marks are ";
+    for(i=0;i<n;i++)
+    {
+        cout<<max(&marks[i])<<endl; //calling the function and referring the array to it 
+    }
+    cout<<"The minimum marks are ";
+    for(i=0;i<n;i++)
+    {
+        cout<<min(&marks[i]); //calling the function and referring the array to it 
+    }
+}

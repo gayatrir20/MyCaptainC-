@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+//declaring inline functions
+inline int cube(int s)
+{
+    return s*s*s;
+}
+inline float sphere(float r)
+{
+    return (4*3.14*r*r*r)/3;
+}
+inline float cylinder(float r,float h)
+{
+    return 3.14*r*r*h;
+}
+inline float cone(float r,float h)
+{
+    return (3.14*h*r*r)/3;
+}
+int main()
+{
+    string shape[4]={"cube","sphere","cylinder","cone"};
+    //calling inline functions repeatedly
+    cout<<"The volume of "<<shape[0]<<" with side 5 is "<<cube(5)<<endl;
+    cout<<"The volume of "<<shape[1]<<" with radius 4.2 is "<<sphere(4.2)<<endl;
+    cout<<"The volume of "<<shape[2]<<" with radius 6 and height 2.2 is "<<cylinder(6,2.2)<<endl;
+    cout<<"The volume of "<<shape[3]<<" with radius 4 and height 4.8 is "<<cone(4,4.8);
+}

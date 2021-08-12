@@ -23,7 +23,7 @@ int main()
     {
         //taking input from user for variables
         cout<<"Enter name of student ";
-        cin>>name;
+        cin>>name; //I can’t give spaces between name as cin string doesn’t accept that and gives error 
         cout<<"Enter roll number ";
         cin>>roll;
         INPUT(name,roll); //calling input function with variables only

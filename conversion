@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+//functions for conversion
+float ity(float n)
+{
+    float *i = new float(n); //declaring new operator variable from user input
+    return(n/36);
+    delete i; //deleting new operator from heap memory
+}
+float itf(float n)
+{
+    float *i = new float(n);
+    return(n/12);
+    delete i;
+}
+float ytf(float n)
+{
+    float *y = new float(n);
+    return(n*3);
+    delete y;
+}
+float yti(float n)
+{
+    float *y = new float(n);
+    return(n*36);
+    delete y;
+}
+float fti(float n)
+{
+    float *f = new float(n);
+    return(n*12);
+    delete f;
+}
+float fty(float n)
+{
+    float *f = new float(n);
+    return(n/3);
+    delete f;
+}
+int main()
+{
+    float inch,yard,feet;
+    cout<<"Enter inches to convert into yards ";
+    cin>>inch;
+    cout<<inch<<" inches are "<<ity(inch)<<" yards"<<endl; //calling function
+    cout<<"Enter inches to convert into feet ";
+    cin>>inch; //same variable can be used again as it is deleted in previous function
+               //due to use of new and delete operator
+    cout<<inch<<" inches are "<<itf(inch)<<" feet"<<endl;
+    cout<<"Enter yards to convert into inches ";
+    cin>>yard;
+    cout<<yard<<" yards are "<<yti(yard)<<" inches"<<endl;
+    cout<<"Enter yards to convert into feet ";
+    cin>>yard;
+    cout<<yard<<" yards are "<<ytf(yard)<<" feet"<<endl;
+    cout<<"Enter feet to convert into inches ";
+    cin>>feet;
+    cout<<feet<<" feet are "<<fti(feet)<<" inches"<<endl;
+    cout<<"Enter feet to convert into yard ";
+    cin>>feet;
+    cout<<feet<<" feet are "<<fty(feet)<<" yards"<<endl;
+}

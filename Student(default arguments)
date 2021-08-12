@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int i=0; //global variable
+//function with different types of parameters and arguments
+void INPUT(string name, int roll, string d = "A", string p = "B.Tech") //default arguments initialised
+{
+    {
+        cout<<"Details of student "<<i+1<<endl;
+        cout<<"Name: "<<name<<endl;
+        cout<<"Roll Number: "<<roll<<endl;
+        cout<<"Division: "<<d<<endl; //printing default arguments
+        cout<<"Program: "<<p<<endl;
+        i++;
+    }
+}
+int main()
+{
+    string name;
+    int roll;
+    cout<<"WELCOME"<<endl;
+    for(int i=0;i<3;i++)
+    {
+        //taking input from user for variables
+        cout<<"Enter name of student ";
+        cin>>name;
+        cout<<"Enter roll number ";
+        cin>>roll;
+        INPUT(name,roll); //calling input function with variables only
+                          //as default arguments stay the same
+    }
+}

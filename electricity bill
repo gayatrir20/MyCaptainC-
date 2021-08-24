@@ -1,0 +1,79 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class consumer
+{
+    char name[50],type[15],m[10];
+    long n,cmr,lmr;
+    int p,u;
+    char t1[15]="commercial";
+    char t2[15]="noncommercial";
+    public:
+        void readData()
+        {
+            cout<<"Enter name ";
+            cin>>name;
+            cout<<"Enter customer ID ";
+            cin>>n;
+            cout<<"Enter type (commercial/noncommercial) ";
+            cin>>type;
+            cout<<"Enter Current Meter Reading ";
+            cin>>cmr;
+            cout<<"Enter Last Meter Reading ";
+            cin>>lmr;
+            cout<<"Enter month ";
+            cin>>m;
+        }
+        int calculateBill()
+        {
+            u=cmr-lmr;
+            if(strcmp(type,t1)==0)
+            {
+                if(u<=200)
+                {
+                    p=5*u;
+                }
+                else
+                {
+                    p=200*5+(u-200)*10;
+                }
+            }
+            else if(strcmp(type,t2)==0)
+            {
+                if(u<=100)
+                {
+                    p=3*u;
+                }
+                else
+                {
+                    p=100*3+(u-100)*5;
+                }
+            }
+            return p;
+        }
+        void printBill()
+        {
+            cout<<"Consumer name: "<<name<<endl;
+            cout<<"Consumer ID: "<<n<<endl;
+            cout<<"Consumer Type: "<<type<<endl;
+            cout<<"Consumer's Current Meter Reading: "<<cmr<<endl;
+            cout<<"Consumer's Last Meter Reading: "<<lmr<<endl;
+            cout<<"For the month of "<<m<<" electricty bill amount is Rs. "<<calculateBill();
+        }
+};
+int main()
+{
+    consumer c[10];
+    int i;
+    cout<<"WELCOME"<<endl;
+    for(i=0;i<3;i++)
+    {
+        cout<<"Enter details for consumer "<<i+1<<endl;
+        c[i].readData();
+    }
+    for(i=0;i<3;i++)
+    {
+        cout<<"\nDetails of consumer "<<i+1<<endl;
+        c[i].printBill();
+    }
+}

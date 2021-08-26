@@ -1,0 +1,117 @@
+#include<iostream>
+#include<list>
+#include<iterator>
+#include<iomanip>
+#include<conio.h>
+#define TRUE 1
+using namespace std;
+class player
+{
+    char name[40],r[20];
+    float bat,bowl;
+    list <float> bat_avg,bowl_avg;
+    public:
+        void readData()
+        {
+            cout<<"Enter name ";
+            cin>>name;
+            cout<<"Enter region ";
+            cin>>r;
+            cout<<"Enter batting average ";
+            cin>>bat;
+            cout<<"Enter bowling average ";
+            cin>>bowl;
+        }
+        void generateList()
+        {
+            if(bat>30 && bowl<25)
+            {
+                bat_avg.push_front(bat);
+                bowl_avg.push_front(bowl);
+            }
+        }
+        bool sortListbat(player *c, const int n)
+        {
+            int i,j;
+            player ctemp;
+            if(bat>30)
+            {
+                for(i=0;i<n;i++)
+                {
+                    for(j=i+1;j<n;j++)
+                    {
+                        if(c[i].bat<c[j].bat)
+                        {
+                            ctemp=c[i];
+                            c[i]=c[j];
+                            c[j]=ctemp;
+                        }
+                    }
+                }
+                return TRUE;
+            }
+        }
+        bool sortListbowl(player *c, const int n)
+        {
+            int i,j;
+            player ctemp;
+            if(bowl<25)
+            {
+                for(i=0;i<n;i++)
+                {
+                    for(j=i+1;j<n;j++)
+                    {
+                        if(c[i].bowl<c[j].bowl)
+                        {
+                            ctemp=c[i];
+                            c[i]=c[j];
+                            c[j]=ctemp;
+                        }
+                    }
+                }
+                return TRUE;
+            }
+        }
+        void displayList(player *c, const int n)
+        {
+            int i;
+            cout<<"The names of selected batsmen are"<<endl;
+            while(sortListbat(c,n))
+            {
+                for(i=0;i<n;i++)
+                {
+                    cout<<c[i].name;
+                }
+            }
+            cout<<"The names of selected bowlers are"<<endl;
+            while(sortListbowl(c,n))
+            {
+                for(i=0;i<n;i++)
+                {
+                    cout<<c[i].name;
+                }
+            }
+        }
+};
+int main()
+{
+    player c[10],ctemp;
+    cout<<"WELCOME"<<endl;
+    int n;
+    cout<<"Enter number of players ";
+    cin>>n;
+    int i;
+    for(i=0;i<n;i++)
+    {
+        cout<<"Enter data of cricketer "<<i+1<<endl;
+        c[i].readData();
+        c[i].generateList();
+    }
+    ctemp.sortListbat(c,n);
+    ctemp.sortListbowl(c,n);
+    ctemp.displayList(c,n);
+}
+
+
+
+

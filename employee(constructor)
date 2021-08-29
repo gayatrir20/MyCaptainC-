@@ -1,0 +1,79 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class Employee
+{
+    public:
+    string d,name;
+    int* Id;
+    Employee() //default constructor
+    {
+        d="Engineering";
+        name="Sam";
+    }
+    //constructor overloading
+    Employee(const Employee &e) //copy constructor
+    {
+        d=e.d;
+        name=e.name;
+    }
+    ~Employee() //Destructor
+    {
+        cout<<"Destructor implemented"<<endl;
+    }
+    void display()
+    {
+        cout<<"Details of the employee are: "<<endl;
+        cout<<"Department: "<<d<<endl;
+        cout<<"Name: "<<name<<endl;
+        cout<<"ID Number: "<<*Id<<endl;
+    }
+};
+//derieved class created to access constructors and functions of parent as well as derieved class
+//only parent class was not able to access all constructors
+class Gross : public Employee
+{
+    public:
+        float salary,gross,DA,HRA,TA;
+        Gross(float s,int x,float da,float hra,float ta,float gs)//Parametrized Dynamic constructor
+        {
+            salary=s;
+            Id=new int; //allocating dynamic memory
+            *Id=x;
+            DA=da;
+            HRA=hra;
+            TA=ta;
+            gross=gs;
+        }
+        void calc()
+        {
+            DA=0.5*salary;
+            HRA=0.3*salary;
+            TA=0.1*salary;
+            gross=salary+DA+HRA+TA;
+        }
+        void disp()
+        {
+            cout<<"Salary: "<<salary<<endl; 
+            cout<<"DA: "<<DA<<endl;
+            cout<<"HRA: "<<HRA<<endl;
+            cout<<"TA: "<<TA<<endl;
+            cout<<"Gross salary: "<<gross<<endl;
+        }
+        ~Gross() //Destructor
+        {
+            cout<<"Destructor implemented for gross salary components"<<endl;
+        }
+};
+int main()
+{
+    Gross eg(50000,9786,0,0,0,0);
+    eg.display();
+    eg.calc();
+    eg.disp();
+    Employee e;
+    Employee e1=e;//calling copy constructor
+    cout<<"Copied details of the employee are: "<<endl;
+    cout<<"Department: "<<e1.d<<endl;
+    cout<<"Name: "<<e1.name<<endl;
+}

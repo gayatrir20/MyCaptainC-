@@ -1,0 +1,95 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class Employee //main class
+{
+    private:
+        char n[20],d[20];
+        int id,s;
+    public:
+        void read()
+        {
+            cout<<"Enter Employee details: "<<endl;
+            cout<<"Name: ";
+            cin>>n;
+            cout<<"Department: ";
+            cin>>d;
+            cout<<"ID Number: ";
+            cin>>id;
+            cout<<"Monthly Salary: ";
+            cin>>s;
+        }
+        void display()
+        {
+            cout<<"Employee details: "<<endl;
+            cout<<"Name: "<<n<<endl;
+            cout<<"Department: "<<d<<endl;
+            cout<<"ID Number: "<<id<<endl;
+            cout<<"Monthly Salary: "<<s<<endl;
+        }
+        friend class Sales; //declaring friend class
+};
+class Sales //friend class
+{
+    public:
+        int sales,in;
+        string p;
+        void readS()
+        {
+            cout<<"Enter sales for the month: ";
+            cin>>sales;
+        }
+        int incentives(Employee e,int sales) //passing main class object as argument
+        {
+            if(sales>50 && sales<100)
+            {
+                in=0.1*e.s;
+            }
+            else if(sales>100 && sales<150)
+            {
+                in=0.2*e.s;
+            }
+            else if(sales>150)
+            {
+                in=0.3*e.s;
+            }
+            return in; //returning value after evaluation
+        }
+        string perf(int sales)
+        {
+            if(sales>150)
+            {
+                p="Excellent";
+            }
+            else if(sales<150 && sales>101)
+            {
+                p="Good";
+            }
+            if(sales>50 && sales<100)
+            {
+                p="Satisfactory";
+            }
+            if(sales<50)
+            {
+                p="Poor";
+            }
+            return p;
+        }
+        void disp(Employee e)
+        {
+            cout<<"Monthly Sales: "<<sales<<endl;
+            cout<<"Incentives: "<<incentives(e,sales)<<endl; //calling function to return and print value
+            cout<<"Performance: "<<perf(sales)<<endl;
+        }
+};
+int main()
+{
+    Employee e;
+    //calling member function of main class
+    e.read();
+    Sales e1; //friend class object
+    //calling friend class function
+    e1.readS();
+    e.display();
+    e1.disp(e);
+}

@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+class TEE;
+class ICA
+{
+    private:
+        int im,io,is,id;
+    public:
+        void display()
+        {
+            cout<<"ICA MARKS(OUT OF 50)"<<endl;
+            cout<<"Enter Maths marks: ";
+            cin>>im;
+            cout<<"Enter OOP marks: ";
+            cin>>io;
+            cout<<"Enter SE marks: ";
+            cin>>is;
+            cout<<"Enter DSA marks: ";
+            cin>>id;
+        }
+        friend int display(ICA,TEE); //friend function declaration
+};
+class TEE
+{
+    private:
+        int tm,to,ts,td;
+    public:
+        void display()
+        {
+            cout<<"TEE MARKS(OUT OF 50)"<<endl;
+            cout<<"Enter Maths marks: ";
+            cin>>tm;
+            cout<<"Enter OOP marks: ";
+            cin>>to;
+            cout<<"Enter SE marks: ";
+            cin>>ts;
+            cout<<"Enter DSA marks: ";
+            cin>>td;
+        }
+        friend int display(ICA,TEE);
+}; 
+//Global function
+int display(ICA MI,TEE MT)//can access both classes private members and functions
+{
+    cout<<"TOTAL MARKS(OUT OF 100)"<<endl;
+    cout<<"OOP: "<<MI.im+MT.tm<<"/100 marks"<<endl;
+    cout<<"OOP: "<<MI.io+MT.to<<"/100 marks"<<endl;
+    cout<<"SE: "<<MI.is+MT.ts<<"/100 marks"<<endl;
+    cout<<"DSA: "<<MI.id+MT.td<<"/100 marks"<<endl;
+}
+int main()
+{
+    ICA MI;
+    MI.display();
+    TEE MT;
+    MT.display();
+    display(MI,MT);
+    return 0;
+}

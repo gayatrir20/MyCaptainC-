@@ -1,0 +1,46 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class Employee
+{
+    public:
+    string d,name;
+    int Id;
+    float salary,gross,DA,HRA,TA;
+    Employee() //default constructor
+    {
+        d="Engineering";
+        name="Sam";
+        Id=2876;
+        salary=50000;
+    }
+    ~Employee() //Destructor
+    {
+        cout<<"Destructor implemented"<<endl;
+    }
+    void calc()
+    {
+        DA=0.5*salary;
+        HRA=0.3*salary;
+        TA=0.1*salary;
+        gross=salary+DA+HRA+TA;
+    }
+    void display()
+    {
+        cout<<"Details of the employee are: "<<endl;
+        cout<<"Department: "<<d<<endl;
+        cout<<"Name: "<<name<<endl;
+        cout<<"ID Number: "<<Id<<endl;
+        cout<<"Salary: "<<salary<<endl; 
+        cout<<"DA: "<<DA<<endl;
+        cout<<"HRA: "<<HRA<<endl;
+        cout<<"TA: "<<TA<<endl;
+        cout<<"Gross salary: "<<gross<<endl;
+    }
+};
+int main()
+{
+    Employee e;
+    e.calc();
+    e.display();
+}

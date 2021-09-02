@@ -1,0 +1,52 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class Employee
+{
+    public:
+    string *d,*name;
+    int *Id;
+    float *salary;
+    float gross,DA,HRA,TA;
+    Employee(string y,string z,int x,float a) //dynamic constructor
+    {
+        //allocating dynamic memory
+        d=new string;
+        *d=y;
+        name=new string;
+        *name=z;
+        Id=new int; 
+        *Id=x;
+        salary=new float;
+        *salary=a;
+    }
+    ~Employee() //Destructor
+    {
+        cout<<"Destructor implemented"<<endl;
+    }
+    void calc(float a)
+    {
+        DA=0.5*a;
+        HRA=0.3*a;
+        TA=0.1*a;
+        gross=a+DA+HRA+TA;
+    }
+    void display()
+    {
+        cout<<"Details of the employee are: "<<endl;
+        cout<<"Department: "<<*d<<endl;
+        cout<<"Name: "<<*name<<endl;
+        cout<<"ID Number: "<<*Id<<endl;
+        cout<<"Salary: "<<*salary<<endl; 
+        cout<<"DA: "<<DA<<endl;
+        cout<<"HRA: "<<HRA<<endl;
+        cout<<"TA: "<<TA<<endl;
+        cout<<"Gross salary: "<<gross<<endl;
+    }
+};
+int main()
+{
+    Employee e("Engineering","Sam",5421,50000);
+    e.calc(50000);
+    e.display();
+}

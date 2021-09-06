@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+class External1; //declaration of class so that it can be mentioned in operator overloading function
+class Internal1
+{
+    public:
+        int maths,se,oop,ds;
+        Internal1(int m,int o,int s,int d)
+        {
+            maths=m;
+            oop=o;
+            se=s;
+            ds=d;
+        }
+        friend void operator + (Internal1, External1); //declaring operator overloading function using friend function
+};
+class External1 
+{
+    int em,eo,es,ed;
+    public:
+        External1(int m1,int o1,int s1,int d1)
+        {
+            em=m1;
+            eo=o1;
+            es=s1;
+            ed=d1;
+        }
+    friend void operator + (Internal1, External1); //declaring operator overloading function using friend function
+};
+void operator + (Internal1 MI, External1 ME) //operator overloading function definition
+{
+    int esm = MI.maths + ME.em;
+    cout<<"Maths marks: "<<esm<<endl;
+    cout<<"Result: "<<(esm > 50 ? "pass" : "fail" ); //printing result for each subject
+    int eso = MI.oop + ME.eo;
+    cout<<"\nOOP marks: "<<eso<<endl;
+    cout<<"Result: "<<(eso > 50 ? "pass" : "fail" );
+    int ess = MI.se + ME.es;
+    cout<<"\nSE marks: "<<ess<<endl;
+    cout<<"Result: "<<(ess > 50 ? "pass" : "fail" );
+    int esd = MI.ds + ME.ed;
+    cout<<"\nDS marks: "<<esd<<endl;
+    cout<<"Result: "<<(esd > 50 ? "pass" : "fail" );
+    int total=esm+eso+ess+esd;
+    cout<<"\nTotal marks: "<<total<<" /400"<<endl; //calculating total
+    if(total>200)
+    {
+        float p=(total*100)/400;
+        cout<<"Result: Pass with "<<p<<"%"<<endl; //calculating %
+    }
+    else
+    {
+        cout<<"\nFinal Result: Fail"<<endl;
+    }
+}
+int main()
+{
+    Internal1 MI(7,39,28,36); //passing marks as arguments to class constructor
+    External1 ME(2,43,49,38);
+    MI+ME; //MI.operator+(ME) //calling operator overloading function
+}

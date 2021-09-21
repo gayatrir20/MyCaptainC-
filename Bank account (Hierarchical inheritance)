@@ -1,0 +1,196 @@
+#include<iostream>
+#include<math.h>
+#include<string.h>
+#define TRUE 1
+#define FALSE 0
+using namespace std;
+//hierarchical inheritance program 
+class account
+{
+    public:
+        char cn[20],ta[20];
+        int na,bal;
+        int b=0;
+        void details()
+        {
+            cout<<"WELCOME"<<endl;
+            cout<<"Enter name: ";
+            cin>>cn;
+            cout<<"Enter account number: ";
+            cin>>na;
+            cout<<"Enter type of account (savings/current): ";
+            cin>>ta;
+        }
+        void display()
+        {
+            cout<<"Name: "<<cn<<endl;
+            cout<<"Account Number: "<<na<<endl;
+            cout<<"Account Type: "<<ta<<endl;
+        }
+        void deposit()
+        {
+            cout<<"Enter deposit amount: ";
+            cin>>bal;
+            b += bal; //incrementing former balance with new deposit
+        }
+        void balance()
+        {
+            cout<<"\nAccount Balance: "<<b;
+        }
+};
+class sav_acct : public account //derieved class 2
+{
+    public:
+    void c_interest()
+    {
+        int ci,t;
+        int r=10; //fixed Interest rate
+        cout<<"Enter the time(in months) after principal balance: ";
+        cin>>t;
+        ci=b*pow(1.1,t); //calculating compund interest
+        cout<<"Balance after applying Compound Interest with rate of 10 percent : "<<ci<<endl;
+        b=ci;
+    }
+    void withdrawal()
+    {
+        int w;
+        cout<<"Enter the amount you want to withdraw: ";
+        cin>>w;
+        if(w<b)
+        {
+            cout<<"Amount withdrew: "<<w<<endl;
+            b=b-w; //updating balance
+        }
+        else
+        {
+            cout<<"Account balance insufficient";
+        }
+    }
+};
+class curr_acct : public account //derieved class 2
+{
+    public:
+    void che_book()
+    {
+        char choice[5];
+        char choice1[5]="Y";
+        char choice2[5]="N"; 
+        cout<<"Do you want a new cheque book? (Y/N)";
+        cin>>choice;
+        if(strcmp(choice,choice1)==0)
+        {
+            cout<<"Cheque Book issued";
+        }
+        else if(strcmp(choice,choice2)==0)
+        {
+            cout<<"Cheque Book not issued";
+        }
+    }
+    bool m_b() //minimum balance condition
+    {
+        if(b<5000)
+        {
+            return TRUE;
+        }
+        else if(b>5000)
+        {
+            return FALSE;
+        }
+    }
+    void withdrawal()
+    {
+        int w;
+        cout<<"Enter the amount you want to withdraw: ";
+        cin>>w;
+        if(m_b()==TRUE) //checking minimum balance condition before withdrawal
+        {
+            cout<<"Your account has reached minimum balance\nApplied Service charge: Rs.100";
+            b=b-100; //updating balance
+            cout<<"\nDeposit required!";
+        }
+        else if(w<b)
+        {
+            cout<<"Amount withdrew: "<<w<<endl;
+            b=b-w; //updating balance
+        }
+        else
+        {
+            cout<<"Account balance insufficient";
+        }
+    }
+    void s_charge()
+    {
+        int sc;
+        if(m_b()==TRUE) //checking minimum balance condition
+        {
+            cout<<"Your account has reached minimum balance\nApplied Service charge: Rs.100";
+            b=b-100;
+            cout<<"\nDeposit required!";
+        }
+    }
+};
+int main()
+{
+    char ta1[20]="savings";
+    char ta2[20]="current";
+    int ch;
+    account a; 
+    a.details();
+    //differentiating class by account type
+    if(strcmp(a.ta,ta1)==0)
+    {
+        sav_acct sa;
+        while(1)
+        {
+            cout<<"\nACTIVITY MENU\n1.Deposit\n2.Check Balance\n3.Withdrawal\n4.Details\n5.Exit\nType activity option number: ";
+            cin>>ch;
+            switch(ch)
+            {
+            case 1: sa.deposit();
+            break;
+            case 2: sa.c_interest();
+                    sa.balance();
+            break;
+            case 3: sa.withdrawal();
+                    sa.balance();
+            break;
+            case 4: a.display();
+                    sa.balance();
+            break;
+            case 5: exit(0);
+            default: cout<<"Invalid choice"<<endl;
+            }
+        }
+    }
+    else if(strcmp(a.ta,ta2)==0)
+    {
+        curr_acct ca;
+        while(1)
+        {
+            cout<<"\nACTIVITY MENU\n1.Deposit\n2.Check Balance\n3.Withdrawal\n4.Cheque Book\n5.Details\n6.Exit\nType activity option number: ";
+            cin>>ch;
+            switch(ch)
+            {
+            case 1: ca.deposit();
+            break;
+            case 2: ca.s_charge();
+                    ca.balance();
+            break;
+            case 3: ca.withdrawal();
+                    ca.balance();
+            break;
+            case 4: ca.che_book();
+            break;
+            case 5: a.display();
+                    ca.balance();
+            break;
+            case 6: exit(0);
+            default: cout<<"Invalid choice"<<endl;
+            }
+        }
+    }
+    else
+    {
+        cout<<"Invalid Account Type";
+    }
+}

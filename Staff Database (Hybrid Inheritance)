@@ -1,0 +1,159 @@
+#include<iostream>
+#include<string.h>
+#include<stdlib.h>
+using namespace std;
+//Hybrid inheritance 
+//Hierarchical inheritance
+class staff
+{
+    public:
+    char n[20],c[10];
+    void code() //this function divides object into different classes
+    {
+        cout<<"Teacher: t\nOfficer: o\nTypist: typ\nEnter profession code for the staff member: ";
+        cin>>c;
+    }
+    void read()
+    {
+        cout<<"Enter name of the staff member: "; //common attributes
+        cin>>n;    
+    }
+};
+class teacher : public staff
+{
+    public:
+    char s[20],p[20];
+    char prof[20]="Teacher";
+    void t_read() //for various attributes of each profession
+    {
+        cout<<"Enter subject: ";
+        cin>>s;
+        cout<<"Enter publication: ";
+        cin>>p;
+    }
+    void display()
+    {
+        cout<<"Name: "<<n<<endl; 
+        cout<<"Profession: "<<prof<<endl;
+        cout<<"Subject: "<<s<<endl;
+        cout<<"Publication: "<<p<<endl;
+    }
+};
+class officer : public staff
+{
+    public:
+    char g[20];
+    char prof1[20]="officer";
+    void f_read()
+    {
+        cout<<"Enter grade: ";
+        cin>>g;
+    }
+    void display() //function overloading in derieved classes
+    {
+        cout<<"Name: "<<n<<endl;
+        cout<<"Profession: "<<prof1<<endl;
+        cout<<"Grade: "<<g<<endl;
+    }
+};
+class typist : public staff
+{
+    public:
+    char type[20];
+    char prof2[20]="Typist";
+    int w,sp;
+    void wtype() //this function divides object into different classes of typists
+    {
+        cout<<"Enter Worker Type (Regular/Casual): ";
+        cin>>type;
+    }
+    void speed()
+    {
+        cout<<"Enter speed of writing: ";
+        cin>>sp;
+    }
+};
+class regular : public typist
+{
+    public:
+    int sal;
+    void display()
+    {
+        cout<<"Name: "<<n<<endl;
+        cout<<"Profession: "<<prof2<<endl;
+        cout<<"Worker: Regular"<<endl;
+        cout<<"Speed: "<<sp<<" words/min"<<endl;
+        if(sp>15)
+        {
+            sal=5000;
+        }
+        else
+        {
+            sal=2000;
+        }
+        cout<<"Salary: Rs."<<sal<<"/month"<<endl;
+    }
+};
+class casual : public typist
+{
+    public:
+    int w;
+    void display()
+    {
+        cout<<"Name: "<<n<<endl;
+        cout<<"Profession: "<<prof2<<endl;
+        cout<<"Worker: Casual"<<endl;
+        cout<<"Speed: "<<sp<<" words/min"<<endl;
+        w=10*sp;
+        cout<<"Wages: Rs."<<w<<"/day"<<endl;
+    }
+};
+int main()
+{
+    char c1[10]="t";
+    char c2[10]="o";
+    char c3[10]="typ";
+    char type1[20]="Regular";
+    char type2[20]="Casual";
+    staff m[20];
+    int n,i;
+    cout<<"Enter number of staff members: ";
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        m[i].code();
+        if(strcmp(m[i].c,c1)==0)
+        {
+            teacher t; //creating object of different classes according to profession
+            t.read(); //reading name(common attribute)
+            t.t_read(); //reading details according to profession
+            t.display(); //displaying all details
+        }
+        else if(strcmp(m[i].c,c2)==0)
+        {
+            officer o;
+            o.read();
+            o.f_read();
+            o.display();
+        }
+        else if(strcmp(m[i].c,c3)==0)
+        {
+            typist ty;
+            ty.wtype();
+            if(strcmp(ty.type,type1)==0)
+            {
+                regular r;
+                r.read();
+                r.speed();
+                r.display();
+            }
+            else if(strcmp(ty.type,type2)==0)
+            {
+                casual ca;
+                ca.read();
+                ca.speed();
+                ca.display();
+            }
+        }
+    }
+}
